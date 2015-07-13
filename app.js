@@ -17,8 +17,8 @@ var createColumnNumbers = function(min, max, row) {
   return u.map(sample, function(num, index) { 
     return { 
       value: num,
-      row: row,
-      column: index
+      row: index,
+      column: row
     } 
   })
 }
