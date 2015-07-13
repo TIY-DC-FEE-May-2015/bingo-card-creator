@@ -18,15 +18,151 @@ app.controller("CardController", function($scope){
     switch($scope.cardRule) {
       case "line":
         straightLine()
+        break
       case "fullCard":
-
+        fullCard()
+        break
       case "corners":
-
+        corners()
+        break
       case "outline":
-
+        outline()
+        break
       case "hashtag":
-      
+        hashtag()
+        break
     }
+  }
+
+  var hashtag = function(){
+    var matchInColumns = _.some($scope.board, function(row){
+      var leftCol =  _.every($scope.board[1])
+      var rightCol =  _.every($scope.board[3])
+      if (leftCol && rightCol) {
+        console.log("col")
+        return true
+      }
+    })
+
+    var matchInRows = _.reduce($scope.board, function(memory, row){
+      return _.map(row, function(cell, index){
+        if (index === 1){ 
+          if (memory[index] === 0 ) {
+            return 0
+          }
+          return cell
+        }
+
+       if (index === 3){ 
+        if (memory[index] === 0 ) {
+            return 0
+          }
+          return cell
+        }        
+      })
+
+    }, [1,1,1,1,1])
+
+    rowTop = matchInRows[1] 
+    rowBottom = matchInRows[3]
+
+    if (rowTop && rowBottom && matchInColumns) {
+      $scope.winner = true
+    }
+  }
+
+  var outline = function(){
+  
+//row and column are reversed dude
+    var sideCols = _.reduce($scope.board, function(memory, row){
+      return _.map(row, function(cell, index){
+        if (index === 0){ 
+          if (memory[index] === 0 ) {
+            return 0
+          }
+          return cell
+        }
+
+       if (index === 4){ 
+        if (memory[index] === 0 ) {
+            return 0
+          }
+          return cell
+        }        
+      })
+
+    }, [1,1,1,1,1])
+
+
+    var columnLeft = sideCols[0]
+    var columnRight = sideCols[4]
+
+    var matchInRows = _.some($scope.board, function(row){
+      //makes it the top
+      //return row[0]
+      //$scope.board makes it the column... for reasons i don't understand
+      var leftRow =  _.every($scope.board[0])
+      var rightRow =  _.every($scope.board[4])
+      if (leftRow && rightRow) {
+        return true
+      }
+    })
+
+    console.log( matchInRows)
+
+
+    if (columnLeft && columnRight && matchInRows) {
+      $scope.winner = true
+    }
+  }
+
+  var corners = function(){
+    var allCorners = 1
+    var rowIndex
+    var colIndex
+
+    for (var i = 0; i < 4; i++){  
+      if (i < 2) {
+        rowIndex = 0
+      } else {
+        rowIndex = 4
+      }
+
+      if (i % 2 === 0) {
+        colIndex = 0
+      } else {
+        colIndex = 4
+      }
+
+      if (allCorners === 0) {
+        return 0
+      }
+
+      allCorners = $scope.board[rowIndex][colIndex]
+
+    }
+    if (allCorners) {
+      $scope.winner = true
+    } 
+
+  }
+
+  var fullCard = function(){
+    var allCells = _.reduce($scope.board, function(memory, row){
+      return _.map(row, function(cell, index){
+        if (memory[index] === 0) {
+          return 0
+        }
+        return cell
+      })
+    }, [1,1,1,1,1])
+
+    var matchAll = _.every(allCells)
+
+    if (matchAll) {
+      $scope.winner = true
+    }
+
   }
 
   var straightLine = function() {
