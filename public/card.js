@@ -2,7 +2,7 @@ var app = angular.module("bingoCardApp", [])
 
 app.controller("CardController", function($scope){
 
-  $scope.board = [
+  $scope.board = [ 
     [ 0, 0, 0, 0, 0 ],
     [ 0, 0, 0, 0, 0 ],
     [ 0, 0, 1, 0, 0 ],
@@ -77,11 +77,14 @@ app.controller("CardController", function($scope){
 
     if (matchInColumns || matchInRows || matchInDiagonal) {
       $scope.winner = true
+      alert("YOU ARE A WINNER")
+      setInterval('window.location.reload()',6000);
     }
   }
 
   var fullCard = function() {
     console.log($scope.winner = _.every( _.flatten($scope.board) ) )
+    setInterval('window.location.reload()',6000);
   }
 
   var outline = function(){ 
@@ -102,13 +105,15 @@ app.controller("CardController", function($scope){
 
       if (row && column) {
        $scope.winner = true
+       alert("YOU ARE A WINNDER")
+       setInterval('window.location.reload()',6000);
       }
   }    
     
 
 
   var cornerCard = function(){
-
+    
     var corners = 1
     _.times(5, function(i){
       if (corners === 0) {
@@ -119,6 +124,8 @@ app.controller("CardController", function($scope){
 
     if (corners){
       $scope.winner = true
+      alert("YOU ARE A WINNER")
+      setInterval('window.location.reload()',6000);
     }
       
   }
@@ -140,6 +147,9 @@ app.controller("CardController", function($scope){
 
       if (row && column) {
        $scope.winner = true
+       alert("YOU ARE A WINNDER")
+       setInterval('window.location.reload()',6000);
+
       }
 
 
