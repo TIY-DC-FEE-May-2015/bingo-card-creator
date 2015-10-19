@@ -23,7 +23,7 @@ var createColumnNumbers = function(min, max, row) {
   })
 }
 
-app.get("/card", function(req, res){
+app.get("/", function(req, res){
   var n = createColumnNumbers(31, 46, 2)
   n[2] = { value: "Free!", free: true, row: 2, column: 2 }
 
