@@ -78,13 +78,13 @@ app.controller("CardController", function($scope){
     if (matchInColumns || matchInRows || matchInDiagonal) {
       $scope.winner = true
       alert("YOU ARE A WINNER")
-      setInterval('window.location.reload()',6000);
+      setInterval('window.location.reload()',3000);
     }
   }
 
   var fullCard = function() {
     console.log($scope.winner = _.every( _.flatten($scope.board) ) )
-    setInterval('window.location.reload()',6000);
+    setInterval('window.location.reload()',3000);
   }
 
   var outline = function(){ 
@@ -106,7 +106,7 @@ app.controller("CardController", function($scope){
       if (row && column) {
        $scope.winner = true
        alert("YOU ARE A WINNDER")
-       setInterval('window.location.reload()',6000);
+       setInterval('window.location.reload()',3000);
       }
   }    
     
@@ -125,7 +125,7 @@ app.controller("CardController", function($scope){
     if (corners){
       $scope.winner = true
       alert("YOU ARE A WINNER")
-      setInterval('window.location.reload()',6000);
+      setInterval('window.location.reload()',3000);
     }
       
   }
@@ -148,7 +148,7 @@ app.controller("CardController", function($scope){
       if (row && column) {
        $scope.winner = true
        alert("YOU ARE A WINNDER")
-       setInterval('window.location.reload()',6000);
+       setInterval('window.location.reload()',3000);
 
       }
 
