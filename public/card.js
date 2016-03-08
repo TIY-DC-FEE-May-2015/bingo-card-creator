@@ -105,7 +105,7 @@ app.controller("CardController", function($scope){
 
       if (row && column) {
        $scope.winner = true
-       alert("YOU ARE A WINNDER")
+       alert("YOU ARE A WINNER")
        setInterval('window.location.reload()',3000);
       }
   }    
